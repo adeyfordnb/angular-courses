@@ -1,0 +1,48 @@
+<div class="container mt-5">
+
+  <h5>Directives:</h5>
+
+  <!--*ngIf-->
+  <div class="block">
+    <h3 class="names-block">1: *ngIf</h3>
+    <p *ngIf="showCase; else anyBlock;">Show case *ngIf!</p>
+    <ng-template #anyBlock>Show this case if false!</ng-template>
+  </div>
+
+  <!--*ngSwitch-->
+  <div class="block">
+    <h3 class="names-block">2: *ngSwitch</h3>
+    <div [ngSwitch]="switch">
+      <p *ngSwitchCase="'1'">Switch = 1</p>
+      <p *ngSwitchCase="'2'">Switch = 2</p>
+      <p *ngSwitchCase="'3'">Switch = 3</p>
+      <p *ngSwitchDefault>Default switch.</p>
+    </div>
+  </div>
+
+  <!--*ngClass-->
+  <div class="block">
+    <h3 class="names-block">3: *ngClass</h3>
+    <p [class.italic]="addClassItalic">Test text</p>
+    <p [ngClass]="addClasses">Test text</p>
+  </div>
+
+  <!--Property bind-->
+  <div class="block">
+    <h3 class="names-block">4: Property bind</h3>
+   <div class="d-flex flex-row align-items-center justify-content-around">
+     <div><img src="{{ urlImg }}"></div>
+     <div><img [src]="urlImg"></div>
+     <div><img bind-src="urlImg"></div>
+     <span [textContent]="urlImg"></span>
+   </div>
+  </div>
+
+  <!--Hidden & Disabled-->
+  <div class="block">
+    <h3 class="names-block">Hidden & Disabled</h3>
+    <p>This is <span [hidden]="hideText">all</span> text!</p>
+    <button class="btn btn-secondary" [disabled]="disabledBtn">Disabled</button>
+  </div>
+
+</div>

@@ -1,0 +1,59 @@
+<div class="container">
+  <form class="mt-5" #form="ngForm" novalidate (ngSubmit)="addTodo(form)">
+    <!--ALERTS-->
+    <div class="alert alert-success" *ngIf="addSuccess">Task was add!</div>
+
+    <div
+      class="alert alert-danger"
+      *ngIf="inputStatus.errors?.required && inputStatus.touched"
+    >Input are empty!
+    </div>
+
+    <div
+      class="alert alert-danger"
+      *ngIf="showError"
+    >Something gone wrong!
+    </div>
+
+    <div class="form-group">
+      <label>Task name: </label>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="todo.title"
+        name="title"
+        #inputStatus="ngModel"
+        required
+      >
+      <button [disabled]="inputStatus.invalid" class="btn btn-success mt-2">Save</button>
+    </div>
+  </form>
+
+  <!--TASKS-->
+  <div>
+    <div
+      class="card mb-3 text-white"
+      *ngFor="let todo of todos; let i = index;"
+      style="max-width: 18rem;"
+      [ngClass]="{
+        'bg-info': todo.completed,
+        'bg-dark': !todo.completed
+      }"
+    >
+      <div class="card-body">
+        <p class="card-text">{{ todo.title }}</p>
+        <button
+          class="btn btn-primary mr-2"
+          (click)="editTodo(todo); todo.completed = !todo.completed"
+        >
+          {{todo.completed ? 'Undone' : 'Done'}}
+        </button>
+        <button
+          class="btn btn-success"
+          (click)="deleteTodo(i)"
+        >Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

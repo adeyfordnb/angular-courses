@@ -1,0 +1,9 @@
+<div
+  class="alert alert-success mt-2 offset-5 col-2 offset-5 mr-auto ml-auto"
+  [ngClass]="{
+    'alert-success': !newMassage.error,
+    'alert-danger': newMassage.error
+  }"
+>
+  {{ newMassage.message }}
+</div>

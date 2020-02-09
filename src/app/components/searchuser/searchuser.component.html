@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="offset-4 col-lg-4 offset-4">
+    <div
+      class="alert alert-danger mt-2"
+      *ngIf="stateInput.errors?.required && stateInput.touched"
+    >
+      Input must be empty!
+    </div>
+
+    <form class="mt-5" novalidate #form="ngForm" (ngSubmit)="findUser(form)">
+      <div class="form-group text-center">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter nickname..."
+          [(ngModel)]="nickname"
+          name="nickname"
+          #stateInput="ngModel"
+          required
+          (keyup)="showBtn = false;"
+        >
+        <button
+          *ngIf="!showBtn"
+          [disabled]="stateInput.invalid"
+          class="btn btn-success mt-2">Search
+        </button>
+        <button
+          routerLink="/info"
+          *ngIf="showBtn"
+          class="btn btn-success mt-2">
+          Get info: {{ user.login }}
+        </button>
+      </div>
+    </form>
+    <p class="mt-2 mb-2 text-center" *ngIf="searchingMassage">Please wait...</p>
+  </div>
+</div>
